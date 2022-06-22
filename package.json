@@ -1,6 +1,7 @@
 {
   "name": "pork-buns-monorepo",
   "workspaces": [
-    "member"
+    "member",
+    "core"
   ]
 }
