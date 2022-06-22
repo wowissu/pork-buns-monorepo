@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import iconCoin from '@/assets/member/icon_coin.png';
 import iconUser from '@/assets/member/icon_user.png';
-import { MemberMenuEnum } from '@pork-buns/core/const/menu.const';
+import { MemberMenuEnum } from '@/const/menu.const';
 import { RouterLink } from 'vue-router';
 </script>
 

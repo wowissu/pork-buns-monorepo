@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { MemberMenuEnum } from '@pork-buns/core/const/menu.const';
+import { MemberMenuEnum } from '@/const/menu.const';
 import MemberContentLayout from '@/layouts/MemberContentLayout.vue';
 import { RouterLink } from 'vue-router';
 
