@@ -1,0 +1,16 @@
+{
+  "name": "@pork-buns/eslint-config",
+  "version": "1.0.0",
+  "description": "",
+  "main": ".eslintrc.cjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "wowissu",
+  "license": "ISC",
+  "dependencies": {
+    "@vue/eslint-config-typescript": "^11.0.0",
+    "@vue/tsconfig": "^0.1.3",
+    "@wowissu/eslint-config": "^2.4.2"
+  }
+}

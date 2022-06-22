@@ -23,6 +23,7 @@
     "@pork-buns/core": "1.0.0"
   },
   "devDependencies": {
+    "@pork-buns/eslint-config": "1.0.0",
     "@quasar/vite-plugin": "^1.0.10",
     "@rushstack/eslint-patch": "^1.1.0",
     "@types/node": "^16.11.36",

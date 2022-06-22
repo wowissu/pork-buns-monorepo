@@ -2,6 +2,7 @@
   "name": "pork-buns-monorepo",
   "workspaces": [
     "member",
-    "core"
+    "core",
+    "eslint"
   ]
 }
