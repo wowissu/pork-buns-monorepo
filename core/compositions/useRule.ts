@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { datetimeFormat } from '@/const/common.const';
+import { datetimeFormat } from '../const/common.const';
 import {
   returnMessage,
   dateRegex,
@@ -19,7 +19,7 @@ import {
   ChinaIdDateRegex,
   isChinaId,
   isHKId
-} from '@/const/rule.const';
+} from '@pork-buns/core/const/rule.const';
 import Decimal from 'decimal.js';
 import { useI18n } from 'vue-i18n';
 

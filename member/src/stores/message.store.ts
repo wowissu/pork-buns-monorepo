@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
 import type { Message } from '@pork-buns/core/types/common';
-import { useApi } from '@/plugins/api.plugin';
+import { useApi } from '@/plugins/memberApi.plugin';
 import type { ApiResDataWithPagination } from '@pork-buns/core/types/api';
 import { useQuasar } from 'quasar';
 

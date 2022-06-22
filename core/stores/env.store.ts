@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 
-export const useAppStore = defineStore('app', () => {
+export const useEnvStore = defineStore('env', () => {
   return {
     apiUrl: window.API_URL,
     agentUrl: window.AGENT_URL

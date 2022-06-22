@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { useRule } from '@/compositions/useRule';
+import { useRule } from '@pork-buns/core/compositions/useRule';
 import SmartContractSelect from '@/components/common/SmartContractSelect.vue';
 import BasicSteps from '@/components/withdrawalAccount/BasicSteps.vue';
 import { QInput, useDialogPluginComponent, useQuasar } from 'quasar';
 import { reactive } from 'vue';
 import { useCryptoStore } from '@/stores/crypto.store';
 import type { BaseInput } from '@pork-buns/core/types/bank';
-import { ContractEnum } from '@/const/crypto.const';
+import { ContractEnum } from '@pork-buns/core/types/crypto';
 
 defineEmits([
   ...useDialogPluginComponent.emits

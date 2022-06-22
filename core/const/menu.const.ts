@@ -1,4 +1,4 @@
-export enum MenuEnum {
+export enum MemberMenuEnum {
   UserInfo = 'UserInfo',
   SecuritySetting = 'SecuritySetting',
   WithdrawalAccounts = 'WithdrawalAccounts',

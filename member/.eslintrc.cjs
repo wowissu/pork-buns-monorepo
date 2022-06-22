@@ -1,5 +1,7 @@
 /* eslint-env node */
 
+const path = require('path');
+
 /** @type { import('eslint').Linter.Config } */
 module.exports = {
   root: true,
@@ -13,7 +15,7 @@ module.exports = {
 
   parserOptions: {
     parser: '@typescript-eslint/parser',
-    project: './tsconfig.json',
+    project: path.resolve(__dirname, './tsconfig.json'),
     extraFileExtensions: ['.vue']
     // createDefaultProgram: true
   },

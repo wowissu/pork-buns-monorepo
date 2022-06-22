@@ -1,6 +1,6 @@
-import { LocaleEnum } from '@/const/common.const';
+import { LocaleEnum } from '@pork-buns/core/const/common.const';
 import { createI18n } from 'vue-i18n';
-import { localeMessagesImport } from '@/i18n';
+import { localeMessagesImport } from '../i18n';
 
 export async function createAppI18n () {
   const locale = LocaleEnum['zh-cn'];

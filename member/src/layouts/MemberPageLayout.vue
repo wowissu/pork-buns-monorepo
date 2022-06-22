@@ -4,14 +4,14 @@ import MemberBalance from '@/components/MemberBalance.vue';
 import MemberWalletList from '@/components/MemberWalletList.vue';
 import AccountSecuritySign from '@/components/AccountSecuritySign.vue';
 import { useMemberStore } from '@/stores/member.store';
-import { useAppStore } from '@/stores/app.store';
+import { useEnvStore } from '@pork-buns/core/stores/env.store';
 import { defineAsyncComponent } from 'vue';
-import { usePersistenRef } from '@/compositions/usePersistentRef';
+import { usePersistenRef } from '@pork-buns/core/compositions/usePersistentRef';
 
 const MemberNavSide = defineAsyncComponent(() => import('@/components/MemberNavSide.vue'));
 
 const memberStore = useMemberStore();
-const appStore = useAppStore();
+const envStore = useEnvStore();
 
 void memberStore.fetchInfo();
 void memberStore.fetchBalance();
@@ -32,7 +32,7 @@ const visible = usePersistenRef('visible', false);
         </div>
         <div>
           <div class="tw-flex tw-flex-col tw-space-y-2">
-            <q-btn type="a" class="tw-bg-gradient-to-r tw-from-[#dc8c01] tw-to-[#ffb400]" text-color="white" :href="appStore.agentUrl" target="_blank">
+            <q-btn type="a" class="tw-bg-gradient-to-r tw-from-[#dc8c01] tw-to-[#ffb400]" text-color="white" :href="envStore.agentUrl" target="_blank">
               申请加入代理
             </q-btn>
             <q-btn color="primary" @click="visible = !visible">

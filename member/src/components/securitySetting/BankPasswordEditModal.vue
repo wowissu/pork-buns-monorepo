@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useRule } from '@/compositions/useRule';
+import { useRule } from '@pork-buns/core/compositions/useRule';
 import { QForm, QInput, useDialogPluginComponent, useQuasar, type QInputProps } from 'quasar';
 import { computed, reactive, ref, unref } from 'vue';
-import { useLoading } from '@/compositions/useLoading';
-import { useToggle } from '@/compositions/useToggle';
+import { useLoading } from '@pork-buns/core/compositions/useLoading';
+import { useToggle } from '@pork-buns/core/compositions/useToggle';
 import { useMemberStore } from '@/stores/member.store';
 
 interface ExposeOptions {

@@ -1,12 +1,12 @@
-import { useAccessToken } from '@/compositions/useAccessToken';
-import { isApiAxiosError, useApi } from '@/plugins/api.plugin';
+import { useAccessToken } from '@pork-buns/core/compositions/useAccessToken';
+import { isApiAxiosError, useApi } from '@/plugins/memberApi.plugin';
 import type { ApiResponseData } from '@pork-buns/core/types/api';
 import type { Member, MemberEditPostdata, MemberLoginResponse, MemberLoginUserInput, MemberVIP } from '@pork-buns/core/types/member';
 import { defineStore } from 'pinia';
 import numeral from 'numeral';
 import { useQuasar } from 'quasar';
 import { readonly, ref, toRef } from 'vue';
-import { useLoading } from '@/compositions/useLoading';
+import { useLoading } from '@pork-buns/core/compositions/useLoading';
 
 export const $balanceLoading = useLoading();
 

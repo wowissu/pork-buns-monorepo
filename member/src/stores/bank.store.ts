@@ -1,4 +1,4 @@
-import { useApi } from '@/plugins/api.plugin';
+import { useApi } from '@/plugins/memberApi.plugin';
 import type { ApiResponseData } from '@pork-buns/core/types/api';
 import type { Bank, AddBankAccountPostdata } from '@pork-buns/core/types/bank';
 import { defineStore } from 'pinia';

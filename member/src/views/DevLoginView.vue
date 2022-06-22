@@ -3,7 +3,7 @@ import { useMemberStore } from '@/stores/member.store';
 import { ref } from 'vue';
 import { useVerifyCode } from '@/compositions/useVerifyCode';
 import { useRouter } from 'vue-router';
-import { MenuEnum } from '@/const/menu.const';
+import { MemberMenuEnum } from '@pork-buns/core/const/menu.const';
 
 const memberStore = useMemberStore();
 
@@ -22,7 +22,7 @@ async function onSubmit () {
     });
 
     // jump to home
-    void router.push({ name: MenuEnum.UserInfo });
+    void router.push({ name: MemberMenuEnum.UserInfo });
   } catch (err) {
     verifyReset();
   }

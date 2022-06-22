@@ -1,7 +1,7 @@
 import { computed, nextTick, readonly } from 'vue';
 import dayjs from 'dayjs';
-import { datePostFormat } from '@/const/common.const';
-import { usePersistenRef } from '@/compositions/usePersistentRef';
+import { datePostFormat } from '../const/common.const';
+import { usePersistenRef } from './usePersistentRef';
 
 export const accessTokenKey = 'access_token';
 export const refreshTokenKey = 'refresh_token';

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import iconCoin from '@/assets/member/icon_coin.png';
 import iconUser from '@/assets/member/icon_user.png';
-import { MenuEnum } from '@/const/menu.const';
+import { MemberMenuEnum } from '@pork-buns/core/const/menu.const';
 import { RouterLink } from 'vue-router';
 </script>
 
@@ -47,35 +47,35 @@ import { RouterLink } from 'vue-router';
       </div>
       <ul class="tw-space-y-2 tw-py-4">
         <li>
-          <RouterLink v-slot="{ navigate, isActive }" custom :to="{ name: MenuEnum.UserInfo }">
+          <RouterLink v-slot="{ navigate, isActive }" custom :to="{ name: MemberMenuEnum.UserInfo }">
             <q-btn class="nav-item" :class="{ 'nav-item--active': isActive }" flat align="left" @click="navigate()">
               信息设置
             </q-btn>
           </RouterLink>
         </li>
         <li>
-          <RouterLink v-slot="{ navigate, isActive }" custom :to="{ name: MenuEnum.SecuritySetting }">
+          <RouterLink v-slot="{ navigate, isActive }" custom :to="{ name: MemberMenuEnum.SecuritySetting }">
             <q-btn class="nav-item" :class="{ 'nav-item--active': isActive }" flat align="left" @click="navigate()">
               安全管理
             </q-btn>
           </RouterLink>
         </li>
         <li>
-          <RouterLink v-slot="{ navigate, isActive }" custom :to="{ name: MenuEnum.WithdrawalAccounts }">
+          <RouterLink v-slot="{ navigate, isActive }" custom :to="{ name: MemberMenuEnum.WithdrawalAccounts }">
             <q-btn class="nav-item" :class="{ 'nav-item--active': isActive }" flat align="left" @click="navigate()">
               提款帐号管理
             </q-btn>
           </RouterLink>
         </li>
         <li>
-          <RouterLink v-slot="{ navigate, isActive }" custom :to="{ name: MenuEnum.MessagesList }">
+          <RouterLink v-slot="{ navigate, isActive }" custom :to="{ name: MemberMenuEnum.MessagesList }">
             <q-btn class="nav-item" :class="{ 'nav-item--active': isActive }" flat align="left" @click="navigate()">
               消息中心
             </q-btn>
           </RouterLink>
         </li>
         <li>
-          <RouterLink v-slot="{ navigate, isActive }" custom :to="{ name: MenuEnum.MyVip }">
+          <RouterLink v-slot="{ navigate, isActive }" custom :to="{ name: MemberMenuEnum.MyVip }">
             <q-btn class="nav-item" :class="{ 'nav-item--active': isActive }" flat align="left" @click="navigate()">
               我的VIP
             </q-btn>

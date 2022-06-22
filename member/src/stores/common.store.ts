@@ -1,5 +1,5 @@
-import { CountryEnum } from '@/const/common.const';
-import { useApi } from '@/plugins/api.plugin';
+import { CountryEnum } from '@pork-buns/core/const/common.const';
+import { useApi } from '@/plugins/memberApi.plugin';
 import type { ApiResponseData } from '@pork-buns/core/types/api';
 import type { City, Province } from '@pork-buns/core/types/common';
 import { defineStore } from 'pinia';

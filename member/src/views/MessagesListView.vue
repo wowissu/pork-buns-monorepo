@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { $date } from '@/compositions/useDate';
-import { useLoading } from '@/compositions/useLoading';
+import { $date } from '@pork-buns/core/compositions/useDate';
+import { useLoading } from '@pork-buns/core/compositions/useLoading';
 import MemberContentLayout from '@/layouts/MemberContentLayout.vue';
 import { useMessageStore } from '@/stores/message.store';
 import type { Message } from '@pork-buns/core/types/common';
 import { useQuasar, type QTableColumn, type QTableProps } from 'quasar';
 import { ref } from 'vue';
-import { usePersistenRef } from '@/compositions/usePersistentRef';
+import { usePersistenRef } from '@pork-buns/core/compositions/usePersistentRef';
 
 const columns: QTableColumn<Message>[] = [
   // { name: 'status', required: true, label: '状态', align: 'left', field: row => row.IsRead ? '已读' : '未读' },

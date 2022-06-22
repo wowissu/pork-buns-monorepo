@@ -1,26 +1,24 @@
 import { inject, type InjectionKey, type Plugin } from 'vue';
 import axios, { AxiosError, type AxiosInstance, type AxiosRequestConfig } from 'axios';
-import type { ApiAxiosResponse, ApiErrorData } from '@pork-buns/core/types/api';
-import { useAccessToken } from '@/compositions/useAccessToken';
-import { useAppStore } from '@/stores/app.store';
-import type { QVueGlobals } from 'quasar';
+import type { ApiErrorData } from '../types/api';
+import { useAccessToken } from '../compositions/useAccessToken';
+import { useEnvStore } from '../stores/env.store';
 
 const apiProvideKey: InjectionKey<AxiosInstance> = Symbol.for('api');
 
-export function createApi (): Plugin {
+export function createApi (cb: (api: AxiosInstance) => void): Plugin {
   return {
     install (app, options?: AxiosRequestConfig) {
-      const appStore = useAppStore();
+      const envStore = useEnvStore();
       const $token = useAccessToken();
 
       const api = axios.create({
-        baseURL: appStore.apiUrl,
+        baseURL: envStore.apiUrl,
         ...options
       });
 
       // add access token if it existing
       api.interceptors.request.use(onFulfilledRequestHandler);
-      api.interceptors.response.use(onFulfilledResponseHandler, onRejectedResponseHandler);
 
       function onFulfilledRequestHandler (config: AxiosRequestConfig<any>) {
         config.headers = config.headers || {};
@@ -37,41 +35,8 @@ export function createApi (): Plugin {
         return config;
       }
 
-      function onFulfilledResponseHandler (response: ApiAxiosResponse<unknown>) {
-        const $q = app.config.globalProperties.$q as QVueGlobals;
-        const useRawResponseData = response.config.useRawResponseData;
-
-        if (response.status !== 200 || response.data === undefined || response.data === null) {
-          $q.notify({
-            message: response.config.error?.message ?? '连线发生错误',
-            color: 'negative'
-          });
-
-          return Promise.reject(response);
-        } else if (!useRawResponseData && !response.data.Success) {
-          $q.notify({
-            message: `${response.data.Message}(${response.data.Code})`,
-            color: 'negative'
-          });
-
-          return Promise.reject(response);
-        }
-
-        return response;
-      }
-
-      function onRejectedResponseHandler (err: ApiAxiosError) {
-        const $q = app.config.globalProperties.$q as QVueGlobals;
-
-        $q.notify({
-          message: err.config.error?.message ?? err.response?.data.error_description ?? '连线发生错误',
-          color: 'negative'
-        });
-
-        return Promise.reject(err);
-      }
-
       app.provide(apiProvideKey, api);
+      cb(api);
     }
   };
 }

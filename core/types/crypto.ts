@@ -1,4 +1,7 @@
-import type { ContractEnum } from '@/const/crypto.const';
+export enum ContractEnum {
+  TRC20 = 'TRC20',
+  ERC20 = 'ERC20'
+}
 
 export interface SmartContractOption {
   label: string;

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 
-import type { GenderEnum } from '@/const/common.const';
+import type { GenderEnum } from '../core/const/common.const';
 import type { Province } from '@/types/common';
 
 export interface MemberLoginUserInput {

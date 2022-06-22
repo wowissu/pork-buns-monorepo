@@ -1,4 +1,4 @@
-import { $date } from '@/compositions/useDate';
+import { $date } from '@pork-buns/core/compositions/useDate';
 import numeral from 'numeral';
 import type { Plugin } from 'vue';
 

@@ -1,5 +1,5 @@
-import { ContractEnum } from '@/const/crypto.const';
-import { useApi } from '@/plugins/api.plugin';
+import { ContractEnum } from '@pork-buns/core/types/crypto';
+import { useApi } from '@/plugins/memberApi.plugin';
 import type { ApiResponseData } from '@pork-buns/core/types/api';
 import type { SmartContractOption, CryptoWallet } from '@pork-buns/core/types/crypto';
 import { defineStore } from 'pinia';

@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useRule } from '@/compositions/useRule';
+import { useRule } from '@pork-buns/core/compositions/useRule';
 import { QForm, QInput, type QInputProps } from 'quasar';
 import { reactive, ref, unref, watch, computed } from 'vue';
-import { useLoading } from '@/compositions/useLoading';
-import { useToggle } from '@/compositions/useToggle';
+import { useLoading } from '@pork-buns/core/compositions/useLoading';
+import { useToggle } from '@pork-buns/core/compositions/useToggle';
 import { useMemberStore } from '@/stores/member.store';
 import type { BaseInput } from '@pork-buns/core/types/bank';
 

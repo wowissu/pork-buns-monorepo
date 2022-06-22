@@ -4,9 +4,9 @@ import ProvinceSelect from '@/components/common/ProvinceSelect.vue';
 import { useMemberStore } from '@/stores/member.store';
 import type { Member, MemberEditPostdata } from '@pork-buns/core/types/member';
 import { reactive, ref, watch } from 'vue';
-import { GenderEnum } from '@/const/common.const';
+import { GenderEnum } from '@pork-buns/core/const/common.const';
 import { QForm, QSelect } from 'quasar';
-import { useRule } from '@/compositions/useRule';
+import { useRule } from '@pork-buns/core/compositions/useRule';
 
 undefined;
 

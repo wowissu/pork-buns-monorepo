@@ -1,4 +1,4 @@
-import { LocaleEnum } from '@/const/common.const';
+import { LocaleEnum } from '../const/common.const';
 
 export const localeMessagesImport = {
   [LocaleEnum.en]: () => import ('./en'),

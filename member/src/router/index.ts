@@ -1,7 +1,7 @@
-import { isDev } from '@/compositions/useEnv';
+import { isDev } from '@pork-buns/core/compositions/useEnv';
 import BaseLayoutVue from '@/layouts/BaseLayout.vue';
 import MemberPageLayoutVue from '@/layouts/MemberPageLayout.vue';
-import { MenuEnum } from '@/const/menu.const';
+import { MemberMenuEnum } from '@pork-buns/core/const/menu.const';
 import { createRouter, createWebHistory } from 'vue-router';
 
 const router = createRouter({
@@ -18,42 +18,42 @@ const router = createRouter({
             {
               path: 'user-info',
               alias: '',
-              name: MenuEnum.UserInfo,
+              name: MemberMenuEnum.UserInfo,
               component: () => import('@/views/UserInfoView.vue')
             },
             {
               path: 'security',
-              name: MenuEnum.SecuritySetting,
+              name: MemberMenuEnum.SecuritySetting,
               component: () => import('@/views/SecuritySettingView.vue')
             },
             {
               path: 'withdrawals/accounts',
-              name: MenuEnum.WithdrawalAccounts,
+              name: MemberMenuEnum.WithdrawalAccounts,
               component: () => import('@/views/withdrawalAccounts/WithdrawalAccountsView.vue'),
-              redirect: { name: MenuEnum.WithdrawalAccounts$BankAccounts },
+              redirect: { name: MemberMenuEnum.WithdrawalAccounts$BankAccounts },
               children: [
                 // 銀行帳戶管理
                 {
                   path: 'banks',
-                  name: MenuEnum.WithdrawalAccounts$BankAccounts,
+                  name: MemberMenuEnum.WithdrawalAccounts$BankAccounts,
                   component: () => import ('@/views/withdrawalAccounts/BankAccountManageView.vue')
                 },
                 // 虛擬錢包管理
                 {
                   path: 'cryptoWallets',
-                  name: MenuEnum.WithdrawalAccounts$CryptoWallets,
+                  name: MemberMenuEnum.WithdrawalAccounts$CryptoWallets,
                   component: () => import ('@/views/withdrawalAccounts/CryptoWalletManageView.vue')
                 }
               ]
             },
             {
               path: 'messages',
-              name: MenuEnum.MessagesList,
+              name: MemberMenuEnum.MessagesList,
               component: () => import('@/views/MessagesListView.vue')
             },
             {
               path: 'myvip',
-              name: MenuEnum.MyVip,
+              name: MemberMenuEnum.MyVip,
               component: () => import('@/views/MyVipView.vue')
             }
           ]

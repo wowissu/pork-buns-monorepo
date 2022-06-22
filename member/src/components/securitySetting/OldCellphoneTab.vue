@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useRule } from '@/compositions/useRule';
+import { useRule } from '@pork-buns/core/compositions/useRule';
 import { QForm, QInput } from 'quasar';
 import { reactive, ref, unref } from 'vue';
-import { useCountdown } from '@/compositions/useCountdown';
-import { useLoading } from '@/compositions/useLoading';
+import { useCountdown } from '@pork-buns/core/compositions/useCountdown';
+import { useLoading } from '@pork-buns/core/compositions/useLoading';
 import { useMemberStore } from '@/stores/member.store';
 
 const memberStore = useMemberStore();

@@ -1,4 +1,4 @@
-import { useAppStore } from '@/stores/app.store';
+import { useEnvStore } from '@pork-buns/core/stores/env.store';
 import { computed, ref } from 'vue';
 
 export function createVerifyCode (minLength: number, maxLength: number, value = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789') {
@@ -20,12 +20,12 @@ export function createVerifyCode (minLength: number, maxLength: number, value = 
 export function useVerifyCode (minNumber = 10, maxNumber = 15) {
   // for user input
   const verifyKey = ref<string>('');
-  const apiStore = useAppStore();
+  const envStore = useEnvStore();
 
   // for produce the url
   const verifyCode = ref<string>(createVerifyCode(minNumber, maxNumber));
   const verifyUrl = computed(() => {
-    const apiUrl = new URL(apiStore.apiUrl);
+    const apiUrl = new URL(envStore.apiUrl);
 
     apiUrl.pathname = `${apiUrl.pathname.replace(/\/$/, '')}/service/API/VerifyCode/Get`;
     apiUrl.search = `?key=${verifyCode.value}`;

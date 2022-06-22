@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { useApi } from '@/plugins/api.plugin';
+import { useApi } from '@/plugins/memberApi.plugin';
 import type { ApiResponseData } from '@pork-buns/core/types/api';
 import { type VIPPrivilege, type VIPLevel, VIPColumnEnum, type ApiVIPLevel } from '@pork-buns/core/types/vip';
 import { ref } from 'vue';
