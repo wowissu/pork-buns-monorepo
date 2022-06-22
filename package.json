@@ -3,6 +3,7 @@
   "workspaces": [
     "member",
     "core",
-    "eslint"
+    "eslint",
+    "juli"
   ]
 }
