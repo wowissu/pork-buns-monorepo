@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
-import type { Message } from '@/types/common';
+import type { Message } from '@pork-buns/core/types/common';
 import { useApi } from '@/plugins/api.plugin';
-import type { ApiResDataWithPagination } from '@/types/api';
+import type { ApiResDataWithPagination } from '@pork-buns/core/types/api';
 import { useQuasar } from 'quasar';
 
 // import rows from '@/../mock/MOCK_DATA.json';

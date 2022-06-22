@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import { useCommonStore } from '@/stores/common.store';
-import type { City } from '@/types/common';
+import type { City } from '@pork-buns/core/types/common';
 import { computed, ref, unref, useAttrs } from 'vue';
 
 const props = defineProps<{

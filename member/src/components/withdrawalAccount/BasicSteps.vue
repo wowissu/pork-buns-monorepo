@@ -5,7 +5,7 @@ import { reactive, ref, unref, watch, computed } from 'vue';
 import { useLoading } from '@/compositions/useLoading';
 import { useToggle } from '@/compositions/useToggle';
 import { useMemberStore } from '@/stores/member.store';
-import type { BaseInput } from '@/types/bank';
+import type { BaseInput } from '@pork-buns/core/types/bank';
 
 enum StepEnum {
   VerifyPassword = 0,

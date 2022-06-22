@@ -1,6 +1,6 @@
 import { useApi } from '@/plugins/api.plugin';
-import type { ApiResponseData } from '@/types/api';
-import type { BankAcount } from '@/types/bank';
+import type { ApiResponseData } from '@pork-buns/core/types/api';
+import type { BankAcount } from '@pork-buns/core/types/bank';
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 

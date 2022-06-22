@@ -1,7 +1,7 @@
 import { CountryEnum } from '@/const/common.const';
 import { useApi } from '@/plugins/api.plugin';
-import type { ApiResponseData } from '@/types/api';
-import type { City, Province } from '@/types/common';
+import type { ApiResponseData } from '@pork-buns/core/types/api';
+import type { City, Province } from '@pork-buns/core/types/common';
 import { defineStore } from 'pinia';
 import { ref, unref, watchEffect, type Ref } from 'vue';
 

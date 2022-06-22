@@ -1,7 +1,7 @@
 import { useLoading } from '@/compositions/useLoading';
 import { useApi } from '@/plugins/api.plugin';
-import type { ApiResponseData } from '@/types/api';
-import type { Game } from '@/types/game';
+import type { ApiResponseData } from '@pork-buns/core/types/api';
+import type { Game } from '@pork-buns/core/types/game';
 import numeral from 'numeral';
 import { defineStore } from 'pinia';
 import { ref, toRef } from 'vue';

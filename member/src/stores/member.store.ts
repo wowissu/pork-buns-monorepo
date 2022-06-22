@@ -1,7 +1,7 @@
 import { useAccessToken } from '@/compositions/useAccessToken';
 import { isApiAxiosError, useApi } from '@/plugins/api.plugin';
-import type { ApiResponseData } from '@/types/api';
-import type { Member, MemberEditPostdata, MemberLoginResponse, MemberLoginUserInput, MemberVIP } from '@/types/member';
+import type { ApiResponseData } from '@pork-buns/core/types/api';
+import type { Member, MemberEditPostdata, MemberLoginResponse, MemberLoginUserInput, MemberVIP } from '@pork-buns/core/types/member';
 import { defineStore } from 'pinia';
 import numeral from 'numeral';
 import { useQuasar } from 'quasar';

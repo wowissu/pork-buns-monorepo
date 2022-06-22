@@ -5,7 +5,7 @@ import BasicSteps from '@/components/withdrawalAccount/BasicSteps.vue';
 import { QInput, useDialogPluginComponent, useQuasar } from 'quasar';
 import { reactive } from 'vue';
 import { useCryptoStore } from '@/stores/crypto.store';
-import type { BaseInput } from '@/types/bank';
+import type { BaseInput } from '@pork-buns/core/types/bank';
 import { ContractEnum } from '@/const/crypto.const';
 
 defineEmits([

@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import { useBankStore } from '@/stores/bank.store';
-import type { Bank } from '@/types/bank';
+import type { Bank } from '@pork-buns/core/types/bank';
 import { ref, toRef, unref, useAttrs } from 'vue';
 
 const props = defineProps<{

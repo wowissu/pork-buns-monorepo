@@ -3,7 +3,7 @@ import MemberContentLayout from '@/layouts/MemberContentLayout.vue';
 import { useMemberStore } from '@/stores/member.store';
 import { useVIPStore, isVIPColumn } from '@/stores/vip.store';
 import { storeToRefs } from 'pinia';
-import { VIPColumnEnum } from '@/types/vip';
+import { VIPColumnEnum } from '@pork-buns/core/types/vip';
 import { computed, reactive, ref, watchEffect } from 'vue';
 import type { QTableColumn } from 'quasar';
 import { useI18n } from 'vue-i18n';

@@ -3,7 +3,7 @@ import { $date } from '@/compositions/useDate';
 import { useLoading } from '@/compositions/useLoading';
 import MemberContentLayout from '@/layouts/MemberContentLayout.vue';
 import { useMessageStore } from '@/stores/message.store';
-import type { Message } from '@/types/common';
+import type { Message } from '@pork-buns/core/types/common';
 import { useQuasar, type QTableColumn, type QTableProps } from 'quasar';
 import { ref } from 'vue';
 import { usePersistenRef } from '@/compositions/usePersistentRef';

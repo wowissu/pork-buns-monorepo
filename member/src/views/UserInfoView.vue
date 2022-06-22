@@ -2,7 +2,7 @@
 import MemberContentLayout from '@/layouts/MemberContentLayout.vue';
 import ProvinceSelect from '@/components/common/ProvinceSelect.vue';
 import { useMemberStore } from '@/stores/member.store';
-import type { Member, MemberEditPostdata } from '@/types/member';
+import type { Member, MemberEditPostdata } from '@pork-buns/core/types/member';
 import { reactive, ref, watch } from 'vue';
 import { GenderEnum } from '@/const/common.const';
 import { QForm, QSelect } from 'quasar';

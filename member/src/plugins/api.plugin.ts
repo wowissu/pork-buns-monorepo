@@ -1,6 +1,6 @@
 import { inject, type InjectionKey, type Plugin } from 'vue';
 import axios, { AxiosError, type AxiosInstance, type AxiosRequestConfig } from 'axios';
-import type { ApiAxiosResponse, ApiErrorData } from '@/types/api';
+import type { ApiAxiosResponse, ApiErrorData } from '@pork-buns/core/types/api';
 import { useAccessToken } from '@/compositions/useAccessToken';
 import { useAppStore } from '@/stores/app.store';
 import type { QVueGlobals } from 'quasar';
