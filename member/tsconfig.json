@@ -1,0 +1,24 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.web.json",
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "lib": [
+      "esnext"
+    ],
+    "paths": {
+      "@/*": ["./src/*"],
+    },
+    "noUnusedLocals": true,
+    "allowJs": true,
+    "newLine": "lf",
+    "strictNullChecks": true,
+    "strictFunctionTypes": false
+  },
+
+  "references": [
+    {
+      "path": "./tsconfig.config.json"
+    }
+  ],
+}

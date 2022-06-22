@@ -1,0 +1,23 @@
+{
+  "columns": {
+    "1": "电子返水",
+    "2": "真人返水",
+    "3": "彩票返水",
+    "4": "体育返水",
+    "5": "电竞返水",
+    "6": "棋牌返水",
+    "7": "捕鱼返水",
+    "BirthdayGift": "生日礼金",
+    "UpgradeGift": "升级礼金",
+    "DemoteTotalDeposit": "保级存款",
+    "TotalBet": "流水要求",
+    "TotalDeposit": "累计存款",
+    "Sport": "体育返水",
+    "Live": "真人返水",
+    "ESport": "电竞返水",
+    "Lottery": "彩票返水",
+    "Games": "电子返水",
+    "Chess": "棋牌返水",
+    "Fish": "捕鱼返水"
+  }
+}

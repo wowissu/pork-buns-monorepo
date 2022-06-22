@@ -1,0 +1,6 @@
+{
+  "name": "pork-buns-monorepo",
+  "workspaces": [
+    "member"
+  ]
+}

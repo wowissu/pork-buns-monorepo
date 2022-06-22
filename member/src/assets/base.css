@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    /* font-family: Proxima Nova, system-ui, sans-serif; */
+    font-family: PingFang SC, Microsoft Yahei, San Francisco, WenQuanYi Micro Hei !important;
+    color: #666;
+    font-size: 16px;
+  }
+}
+
