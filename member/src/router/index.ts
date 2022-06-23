@@ -15,6 +15,13 @@ const router = createRouter({
           path: '',
           component: MemberPageLayoutVue,
           children: [
+            // 资金管理
+            {
+              path: 'bet-record',
+              name: MemberMenuEnum.BetRecord,
+              component: () => import('@/views/BetRecordView.vue')
+            },
+            // 个人中心
             {
               path: 'user-info',
               alias: '',
@@ -52,7 +59,7 @@ const router = createRouter({
               component: () => import('@/views/MessagesListView.vue')
             },
             {
-              path: 'myvip',
+              path: 'my-vip',
               name: MemberMenuEnum.MyVip,
               component: () => import('@/views/MyVipView.vue')
             }

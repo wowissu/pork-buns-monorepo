@@ -9,7 +9,7 @@ const memberStore = useMemberStore();
 
 const router = useRouter();
 const userName = ref('su8888');
-const password = ref('123456');
+const password = ref('Aa123456');
 const { verifyKey, verifyCode, verifyUrl, reset: verifyReset } = useVerifyCode();
 
 async function onSubmit () {

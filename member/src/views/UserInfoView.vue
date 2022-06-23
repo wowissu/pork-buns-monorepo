@@ -75,7 +75,7 @@ async function submit () {
   }
 
   void memberStore.changeUserInfo({
-    Sex: userinput.Sex!,
+    Sex: userinput.Sex,
     Name: userinput.Name!,
     BirthDay: userinput.BirthDay!,
     UserIdentity: userinput.UserIdentity!,

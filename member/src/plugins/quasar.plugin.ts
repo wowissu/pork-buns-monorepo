@@ -1,4 +1,4 @@
-import { Quasar, Notify, Dialog, Ripple, type QuasarPluginOptions } from 'quasar';
+import { Quasar, Notify, Dialog, Ripple, ClosePopup, type QuasarPluginOptions } from 'quasar';
 import type { Plugin } from 'vue';
 
 // import '@quasar/extras/material-icons/material-icons.css';
@@ -24,7 +24,8 @@ export function createQuasar (): Plugin {
           Dialog
         },
         directives: {
-          Ripple
+          Ripple,
+          ClosePopup
         },
         config: {
           notify: { /* look at QuasarConfOptions from the API card */ }

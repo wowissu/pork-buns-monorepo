@@ -11,3 +11,9 @@
   }
 }
 
+.q-table-fixed {
+  .q-table {
+    table-layout: fixed;
+    width: 100%;
+  }
+}
