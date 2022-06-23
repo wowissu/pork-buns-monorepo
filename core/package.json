@@ -12,5 +12,8 @@
     "pinia": "^2.0.14",
     "vue": "^3.2.37",
     "vue-i18n": "^9.1.10"
+  },
+  "devDependencies": {
+    "@pork-buns/eslint-config": "1.0.0"
   }
 }
