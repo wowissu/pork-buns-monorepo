@@ -1,4 +1,6 @@
 export enum MemberMenuEnum {
+  BetRecord = 'BetRecord',
+
   UserInfo = 'UserInfo',
   SecuritySetting = 'SecuritySetting',
   WithdrawalAccounts = 'WithdrawalAccounts',
