@@ -10,6 +10,7 @@ export async function createAppI18n () {
   const i18n = createI18n({
     locale, // set locale
     fallbackLocale: 'en', // set fallback locale
+    globalInjection: true,
     messages: {
       [locale]: msgs
     }
