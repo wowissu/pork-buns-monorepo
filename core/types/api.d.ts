@@ -46,3 +46,4 @@ export interface ApiResDataWithPagination<T> extends ApiResponseData<T> {
 }
 
 export type ApiAxiosResponse<T> = AxiosResponse<ApiResponseData<T>>;
+export type ApiAxiosResponseWithPagination<T> = AxiosResponse<ApiResDataWithPagination<T>>;
