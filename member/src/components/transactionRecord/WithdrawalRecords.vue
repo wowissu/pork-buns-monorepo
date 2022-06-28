@@ -7,6 +7,7 @@ import { TransactionDateTypeEnum, TransactionTypeEnum, type WithdrawalRecord } f
 import { useRowsLoader } from '@/compositions/useRowsLoader';
 import { useI18n } from 'vue-i18n';
 import { $omitted } from '@/compositions/useOmitted';
+import { watch } from 'vue';
 
 const transcationRecordStore = useTransactionRecordStore();
 const pagination = { rowsPerPage: 0 };
@@ -62,7 +63,9 @@ const onScroll: QTableProps['onVirtualScroll'] = function onScroll ({ index }) {
   }
 };
 
-void $recordLoader.reload();
+watch(() => props.dayType, () => {
+  void $recordLoader.reload();
+}, { immediate: true });
 
 </script>
 

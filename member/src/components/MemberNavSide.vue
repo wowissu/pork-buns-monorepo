@@ -29,9 +29,11 @@ import { RouterLink } from 'vue-router';
           </q-btn>
         </li>
         <li>
-          <q-btn class="nav-item" flat align="left">
-            交易记录
-          </q-btn>
+          <RouterLink v-slot="{ navigate, isActive }" custom :to="{ name: MemberMenuEnum.TransactionRecord }">
+            <q-btn class="nav-item" :class="{ 'nav-item--active': isActive }" flat align="left" @click="navigate()">
+              交易记录
+            </q-btn>
+          </RouterLink>
         </li>
         <li>
           <RouterLink v-slot="{ navigate, isActive }" custom :to="{ name: MemberMenuEnum.BetRecord }">

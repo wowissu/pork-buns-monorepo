@@ -7,6 +7,7 @@ import { TransactionDateTypeEnum, TransactionTypeEnum, type OthersRecord } from 
 import { useRowsLoader } from '@/compositions/useRowsLoader';
 import { useI18n } from 'vue-i18n';
 import { $date } from '@pork-buns/core/compositions/useDate';
+import { watch } from 'vue';
 
 const transcationRecordStore = useTransactionRecordStore();
 const pagination = { rowsPerPage: 0 };
@@ -58,7 +59,9 @@ const onScroll: QTableProps['onVirtualScroll'] = function onScroll ({ index }) {
   }
 };
 
-void $recordLoader.reload();
+watch(() => props.dayType, () => {
+  void $recordLoader.reload();
+}, { immediate: true });
 
 </script>
 
@@ -95,7 +98,7 @@ void $recordLoader.reload();
       <q-td class="!tw-py-0">
         <q-item dense class="tw-py-1 tw-px-2 tw-w-full">
           <q-item-section>
-            <q-item-label class="tw-text-base tw-font-medium">
+            <q-item-label class="tw-text-base">
               {{ cell.value }}
             </q-item-label>
             <q-item-label caption>
