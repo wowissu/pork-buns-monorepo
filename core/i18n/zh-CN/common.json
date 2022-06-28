@@ -1,3 +1,18 @@
 {
-  "copy": "已複製 {0}"
+  "copy": "已複製 {0}",
+  "TransactionTypeEnum": {
+    "Deposit": "充值",
+    "Withdrawals": "提款",
+    "Transfer": "转账",
+    "Preferential": "优惠",
+    "Others": "其他"
+  },
+  "TransactionDateTypeEnum": {
+    "today": "今天",
+    "yesterday": "昨天",
+    "nearly7days": "近7天",
+    "nearly15days": "近15天",
+    "nearly30days": "近30天",
+    "all": "全部"
+  }
 }
