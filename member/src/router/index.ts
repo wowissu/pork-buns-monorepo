@@ -3,6 +3,7 @@ import BaseLayoutVue from '@/layouts/BaseLayout.vue';
 import MemberPageLayoutVue from '@/layouts/MemberPageLayout.vue';
 import { MemberMenuEnum } from '@/const/menu.const';
 import { createRouter, createWebHistory } from 'vue-router';
+import { TransactionDateTypeEnum, TransactionTypeEnum } from '@pork-buns/core/types/transactionRecord';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,6 +17,44 @@ const router = createRouter({
           component: MemberPageLayoutVue,
           children: [
             // 资金管理
+            {
+              path: 'transaction-record',
+              name: MemberMenuEnum.TransactionRecord,
+              component: () => import('@/views/TransactionRecordView.vue'),
+              redirect: { name: `${MemberMenuEnum.TransactionRecord}-${TransactionTypeEnum.Deposit}`, params: { dayType: TransactionDateTypeEnum.Nearly7days } },
+              children: [
+                {
+                  path: 'deposit/:dayType',
+                  props: true,
+                  name: `${MemberMenuEnum.TransactionRecord}-${TransactionTypeEnum.Deposit}`,
+                  component: () => import('@/components/transactionRecord/DepositRecords.vue')
+                },
+                {
+                  path: 'withdrawal/:dayType',
+                  props: true,
+                  name: `${MemberMenuEnum.TransactionRecord}-${TransactionTypeEnum.Withdrawals}`,
+                  component: () => import('@/components/transactionRecord/WithdrawalRecords.vue')
+                },
+                {
+                  path: 'transfer/:dayType',
+                  props: true,
+                  name: `${MemberMenuEnum.TransactionRecord}-${TransactionTypeEnum.Transfer}`,
+                  component: () => import('@/components/transactionRecord/TransferRecords.vue')
+                },
+                {
+                  path: 'preferential/:dayType',
+                  props: true,
+                  name: `${MemberMenuEnum.TransactionRecord}-${TransactionTypeEnum.Preferential}`,
+                  component: () => import('@/components/transactionRecord/PreferentialRecords.vue')
+                },
+                {
+                  path: 'others/:dayType',
+                  props: true,
+                  name: `${MemberMenuEnum.TransactionRecord}-${TransactionTypeEnum.Others}`,
+                  component: () => import('@/components/transactionRecord/OthersRecords.vue')
+                }
+              ]
+            },
             {
               path: 'bet-record',
               name: MemberMenuEnum.BetRecord,

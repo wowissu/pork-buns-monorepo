@@ -6,6 +6,7 @@ import type { QTableColumn, QTableProps } from 'quasar';
 import { TransactionDateTypeEnum, TransactionTypeEnum, type PreferentialRecord } from '@pork-buns/core/types/transactionRecord';
 import { useRowsLoader } from '@/compositions/useRowsLoader';
 import { $date } from '@pork-buns/core/compositions/useDate';
+import { watch } from 'vue';
 
 const transcationRecordStore = useTransactionRecordStore();
 const pagination = { rowsPerPage: 0 };
@@ -57,7 +58,9 @@ const onScroll: QTableProps['onVirtualScroll'] = function onScroll ({ index }) {
   }
 };
 
-void $recordLoader.reload();
+watch(() => props.dayType, () => {
+  void $recordLoader.reload();
+}, { immediate: true });
 
 </script>
 
