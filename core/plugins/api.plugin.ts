@@ -6,6 +6,8 @@ import { useEnvStore } from '../stores/env.store';
 
 const apiProvideKey: InjectionKey<AxiosInstance> = Symbol.for('api');
 
+const parentReferrer = (window.location.ancestorOrigins && window.location.ancestorOrigins[0]) || document.referrer;
+
 export function createApi (cb: (api: AxiosInstance) => void): Plugin {
   return {
     install (app, options?: AxiosRequestConfig) {
@@ -30,7 +32,7 @@ export function createApi (cb: (api: AxiosInstance) => void): Plugin {
         }
 
         // headers[ParentOrigin]
-        config.headers['ParentOrigin'] = (window.location.ancestorOrigins && window.location.ancestorOrigins[0]) || document.referrer;
+        config.headers['ParentOrigin'] = parentReferrer;
 
         return config;
       }
