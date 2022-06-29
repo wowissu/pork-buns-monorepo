@@ -5,6 +5,7 @@ import { QForm, QInput, useDialogPluginComponent, useQuasar } from 'quasar';
 import { reactive, ref, toRef, computed } from 'vue';
 import { useCountdown } from '@pork-buns/core/compositions/useCountdown';
 import { useLoading } from '@pork-buns/core/compositions/useLoading';
+import { useMemberSecurityApi } from '@pork-buns/core/api/member.api';
 
 defineEmits([
   ...useDialogPluginComponent.emits
@@ -13,6 +14,7 @@ defineEmits([
 const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } = useDialogPluginComponent();
 
 const memberStore = useMemberStore();
+const memberSecurityApi = useMemberSecurityApi();
 const member = toRef(memberStore, 'member');
 const $q = useQuasar();
 const $rules = useRule();
@@ -41,7 +43,7 @@ async function submit () {
   try {
     $checkVerifyCodeLoading.start();
 
-    await memberStore.verifyEmailCode(userinput.password, userinput.newEmail);
+    await memberSecurityApi.verifyEmailCode(userinput.password, userinput.newEmail);
 
     void memberStore.fetchInfo();
 
@@ -70,7 +72,7 @@ async function sendValidateMail () {
     $sendVerifyCodeLoading.start();
     void $counter.start(60);
 
-    await memberStore.sendEmailVerifyCode(userinput.password, userinput.newEmail, userinput.oldEmail);
+    await memberSecurityApi.sendEmailVerifyCode(userinput.password, userinput.newEmail, userinput.oldEmail);
   } catch (err) {
     $counter.stop();
     throw err;

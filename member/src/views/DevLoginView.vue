@@ -25,6 +25,7 @@ async function onSubmit () {
     void router.push({ name: MemberMenuEnum.UserInfo });
   } catch (err) {
     verifyReset();
+    throw err;
   }
 }
 

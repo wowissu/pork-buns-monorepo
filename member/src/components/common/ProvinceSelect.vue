@@ -1,10 +1,14 @@
 <script setup lang='ts'>
 import { useProvinces } from '@/stores/common.store';
+import { CountryEnum } from '@pork-buns/core/const/common.const';
 import { computed, ref, useAttrs } from 'vue';
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   modelValue: any;
-}>();
+  country?: CountryEnum
+}>(), {
+  country: CountryEnum.China
+}) ;
 
 const emits = defineEmits<{
   (e: 'update:modelValue', val: number): void
@@ -12,7 +16,7 @@ const emits = defineEmits<{
 
 // const slots = useSlots();
 const attrs = useAttrs();
-const { provinces } = useProvinces(0);
+const { provinces } = useProvinces(props.country);
 const provinceOptions = computed(() => provinces.value.map((row) => ({ label: row.ProvinceName, value: row.ProvinceID })));
 const filteredProvinceOptions = ref<{ label: string, value: number }[]>([]);
 

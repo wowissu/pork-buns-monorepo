@@ -25,12 +25,12 @@ export interface BankAcount {
 }
 
 export interface AddBankAccountPostdata {
-  Password: string,
-  BankPassword: string,
-  AccountName: string,
-  BankID: number,
-  BankBranch: string,
-  BankAccount: string,
-  BankProvinceID: number,
-  BankCity: number;
+  Password: string
+  BankPassword: string
+  AccountName: string
+  BankID: number
+  BankBranch: string
+  BankAccount: string
+  BankProvinceID: number
+  BankCity: number
 }

@@ -1,20 +1,19 @@
 import { defineStore } from 'pinia';
-import { useApi } from '@/plugins/memberApi.plugin';
-import type { ApiResponseData } from '@pork-buns/core/types/api';
-import { type VIPPrivilege, type VIPLevel, VIPColumnEnum, type ApiVIPLevel } from '@pork-buns/core/types/vip';
+import { type VIPPrivilege, type VIPLevel, VIPColumnEnum } from '@pork-buns/core/types/vip';
 import { ref } from 'vue';
+import { useVipApi } from '@pork-buns/core/api/member.api';
 
 export function isVIPColumn (key: any): key is VIPColumnEnum {
   return Object.values(VIPColumnEnum).includes(key);
 }
 
 export const useVIPStore = defineStore('vip', () => {
-  const api = useApi();
+  const vipApi = useVipApi();
   const privileges = ref<VIPPrivilege[]>([]);
   const levels = ref<VIPLevel[]>([]);
 
   async function fetchVIPSystem () {
-    const res = await api.get<ApiResponseData<{ VipPrivileges: VIPPrivilege[], Vipsystem: ApiVIPLevel[] }>>('service/API/System/GetAsync');
+    const res = await vipApi.fetchVipSystem();
 
     levels.value = res.data.Data.Vipsystem.map((v) => ({ ...v, LevelID: v.Level }));
     privileges.value = res.data.Data.VipPrivileges;

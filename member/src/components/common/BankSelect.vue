@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { useBankStore } from '@/stores/bank.store';
+import { useCommonStore } from '@/stores/common.store';
 import type { Bank } from '@pork-buns/core/types/bank';
 import { ref, toRef, unref, useAttrs } from 'vue';
 
@@ -13,14 +13,14 @@ const emits = defineEmits<{
 
 // const slots = useSlots();
 const attrs = useAttrs();
-const bankStore = useBankStore();
-const bankList = toRef(bankStore, 'bankList');
-const filteredBankList = ref<Bank[]>([]);
+const commonStore = useCommonStore();
+const banks = toRef(commonStore, 'banks');
+const filteredBanks = ref<Bank[]>([]);
 
 function filterHandler (val: string, update: (cb: () => void) => void) {
   if (val === '') {
     update(() => {
-      filteredBankList.value = unref(bankList);
+      filteredBanks.value = unref(banks);
     });
 
     return;
@@ -29,7 +29,7 @@ function filterHandler (val: string, update: (cb: () => void) => void) {
   update(() => {
     const needle = val.toLowerCase();
 
-    filteredBankList.value = unref(bankList).filter(row => (
+    filteredBanks.value = unref(banks).filter(row => (
       (row.BankName?.toLowerCase().indexOf(needle) ?? -1) > -1 ||
       (row.BankEName?.toLowerCase().indexOf(needle) ?? -1) > -1
     ));
@@ -41,7 +41,7 @@ function filterHandler (val: string, update: (cb: () => void) => void) {
   <q-select
     :model-value="props.modelValue"
     outlined
-    :options="filteredBankList"
+    :options="filteredBanks"
     emit-value
     map-options
     :option-label="row => row.BankName || row.BankEName"

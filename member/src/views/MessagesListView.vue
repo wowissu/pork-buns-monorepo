@@ -2,11 +2,11 @@
 import { $date } from '@pork-buns/core/compositions/useDate';
 import { useLoading } from '@pork-buns/core/compositions/useLoading';
 import MemberContentLayout from '@/layouts/MemberContentLayout.vue';
-import { useMessageStore } from '@/stores/message.store';
 import type { Message } from '@pork-buns/core/types/common';
 import { useQuasar, type QTableColumn, type QTableProps } from 'quasar';
 import { computed, ref } from 'vue';
 import { usePersistenRef } from '@pork-buns/core/compositions/usePersistentRef';
+import { useMessageApi } from '@pork-buns/core/api/message.api';
 
 const columns: QTableColumn<Message>[] = [
   // { name: 'status', required: true, label: '状态', align: 'left', field: row => row.IsRead ? '已读' : '未读' },
@@ -16,7 +16,7 @@ const columns: QTableColumn<Message>[] = [
 ];
 
 const $q = useQuasar();
-const messageStore = useMessageStore();
+const messageApi = useMessageApi()
 const pagination = { rowsPerPage: 0 };
 const messages = ref<Message[]>([]);
 const deletedMessagesId = ref<Message['InternalMailID'][]>([]);
@@ -45,7 +45,7 @@ async function fetchMessage (page = pageIndex.value, size = pageSize.value) {
   try {
     $loading.start();
 
-    const res = await messageStore.fectMessages(page, size);
+    const res = await messageApi.fectMessages(page, size);
     const msgs = res.data.Data;
     const startIndex = (page - 1) * size;
 
@@ -67,7 +67,7 @@ async function messagePopup (msg: Message) {
   showMessageContent.value = true;
 
   if (msg.IsRead === 0) {
-    await messageStore.readMessage(msg.InternalMailID);
+    await messageApi.readMessage(msg.InternalMailID);
 
     const message = messages.value.find(m => m.InternalMailID === msg.InternalMailID);
 
@@ -77,7 +77,7 @@ async function messagePopup (msg: Message) {
 
 function deleteMessage (message: Message) {
   async function deleteIt () {
-    await messageStore.deleteMessage(message.InternalMailID);
+    await messageApi.deleteMessage(message.InternalMailID);
 
     deletedMessagesId.value = [...deletedMessagesId.value, message.InternalMailID];
 

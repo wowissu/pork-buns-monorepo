@@ -4,7 +4,7 @@ import { useLoading } from '@pork-buns/core/compositions/useLoading';
 import { useToggle } from '@pork-buns/core/compositions/useToggle';
 import { QForm, QInput, useDialogPluginComponent, useQuasar, type QInputProps } from 'quasar';
 import { reactive, ref, unref } from 'vue';
-import { useMemberStore } from '@/stores/member.store';
+import { useMemberApi } from '@pork-buns/core/api/member.api';
 
 interface ExposeOptions {
   type: QInputProps['type']
@@ -12,7 +12,7 @@ interface ExposeOptions {
 }
 
 const $q = useQuasar();
-const memberStore = useMemberStore();
+const memberApi = useMemberApi();
 const $rules = useRule();
 const formRef = ref<QForm>();
 const $loading = useLoading();
@@ -39,12 +39,12 @@ async function submit () {
   $loading.start();
 
   try {
-    await memberStore.changePassword(userinput.oldPassword, userinput.newPassowrd);
+    await memberApi.changePassword(userinput.oldPassword, userinput.newPassowrd);
 
     onDialogOK();
 
     $q.notify({
-      message: '恭喜您，设置账号密码成功！',
+      message: '恭喜您，设置登录密码成功！',
       color: 'positive'
     });
   } finally {
@@ -69,7 +69,7 @@ async function submit () {
 
         <q-card-section class="tw-space-y-2">
           <div>
-            <q-input v-model="userinput.oldPassword" :rules="[$rules.required(), $rules.password()]" outlined type="password" placeholder="原账号密码" />
+            <q-input v-model="userinput.oldPassword" :rules="[$rules.required(), $rules.password()]" outlined type="password" placeholder="原登录密码" />
           </div>
           <div>
             <q-input

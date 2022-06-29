@@ -1,22 +1,43 @@
 import { useLoading } from '@pork-buns/core/compositions/useLoading';
-import { useApi } from '@/plugins/memberApi.plugin';
-import type { ApiResponseData } from '@pork-buns/core/types/api';
-import type { Game } from '@pork-buns/core/types/game';
+import type { Game, Wallet } from '@pork-buns/core/types/game';
 import numeral from 'numeral';
 import { defineStore } from 'pinia';
-import { ref, toRef } from 'vue';
+import { ref, toRef, watchEffect } from 'vue';
+import { useGameApi } from '@pork-buns/core/api/game.api';
 
 export const $allBalanceLoading = useLoading();
 
+export const mainWallet: Wallet = {
+  PlatformID: 9999,
+  PlatformEName: 'Main',
+  ShowName: '中心钱包',
+  Sequence: 0
+};
+
 export const useGameStore = defineStore('game', () => {
-  const api = useApi();
+  const gameApi = useGameApi();
   const games = ref<Game[]>([]);
+  const wallets = ref<Wallet[]>([]); // Will include main-wallet
   const gameBalances = ref<Partial<Record<Game['PlatformEName'], number | null>>>({});
+  // const gameAudits = ref<Partial<Record<Game['PlatformEName'], GameAudit>>>({});
+
+  // wallets handlers
+  watchEffect(() => {
+    wallets.value = [
+      mainWallet,
+      ...games.value.map((game) => ({
+        PlatformID: game.PlatformID,
+        PlatformEName: game.PlatformEName,
+        ShowName: game.ShowName,
+        Sequence: game.Sequence
+      }))
+    ];
+  });
 
   void fetchGameList().then(() => updateAllGamesBalance());
 
   async function fetchGameList () {
-    const res = await api.post<ApiResponseData<Game[]>>('/service/API/Game/ListAsync');
+    const res = await gameApi.fetchList();
 
     games.value = res.data.Data.sort((a, b) => a.Sequence - b.Sequence);
   }
@@ -26,9 +47,7 @@ export const useGameStore = defineStore('game', () => {
 
     row.value = null;
 
-    const res = await api.post<ApiResponseData<{ Balance: string }>>('/service/API/Credit/GameAsync', {
-      GameName: game.PlatformEName
-    });
+    const res = await gameApi.fetchGameCredit(game.PlatformEName);
 
     row.value = numeral(res.data.Data.Balance).value();
   }
@@ -37,9 +56,7 @@ export const useGameStore = defineStore('game', () => {
     try {
       $allBalanceLoading.start();
 
-      const res = await api.post<ApiResponseData<{ GameName: string, Balance: string }[]>>('/service/API/Credit/MultipleGameAsync', {
-        GameNames: games.value.map((row) => row.PlatformEName)
-      });
+      const res = await gameApi.fetchGamesCredit(games.value.map((row) => row.PlatformEName));
 
       gameBalances.value = res.data.Data.reduce((acc, row) => {
         acc[row.GameName] = numeral(row.Balance).value();
@@ -57,16 +74,23 @@ export const useGameStore = defineStore('game', () => {
     return toRef(gameBalances.value, game.PlatformEName);
   }
 
-  function getGameBalance (game: Game) {
-    return gameBalances.value[game.PlatformEName] ?? null;
+  // function getGameBalance (game: Game) {
+  //   return gameBalances.value[game.PlatformEName] ?? null;
+  // }
+
+  function isMainWallet (w: Wallet) {
+    return w.PlatformID === mainWallet.PlatformID;
   }
 
   return {
     games,
+    wallets,
+    mainWallet,
     fetchGameList,
     fetchGameCredit,
     updateAllGamesBalance,
     useGameBalance,
-    getGameBalance
+    // getGameBalance,
+    isMainWallet
   };
 });

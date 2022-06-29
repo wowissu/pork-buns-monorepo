@@ -19,5 +19,5 @@ export interface AddCryptoWalletPostdata {
   Password: string,
   BankPassword: string,
   UsdtType: ContractEnum,
-  UsdtAddress: string
+  Address: string
 }

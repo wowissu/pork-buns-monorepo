@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { useTransactionRecordStore } from '@/stores/transactionRecord.store';
+import { useRecordApi } from '@pork-buns/core/api/record.api';
 import { useLoading } from '@pork-buns/core/compositions/useLoading';
 import type { QTableColumn, QTableProps } from 'quasar';
 import { TransactionDateTypeEnum, TransactionTypeEnum, TransferStatusEnum, type TransferRecord } from '@pork-buns/core/types/transactionRecord';
@@ -9,7 +9,7 @@ import { useI18n } from 'vue-i18n';
 import { $omitted } from '@/compositions/useOmitted';
 import { watch } from 'vue';
 
-const transcationRecordStore = useTransactionRecordStore();
+const recordApi = useRecordApi();
 const pagination = { rowsPerPage: 0 };
 const $loading = useLoading();
 const $i18n = useI18n();
@@ -36,9 +36,7 @@ const $recordLoader = useRowsLoader([] as TransferRecord[], (ctx) => {
     try {
       $loading.start();
 
-      console.log(props.dayType);
-
-      const res = await transcationRecordStore.fetchRecord({
+      const res = await recordApi.fetchRecord({
         DayType: props.dayType,
         TransactionType: TransactionTypeEnum.Transfer,
         Pagination: {
