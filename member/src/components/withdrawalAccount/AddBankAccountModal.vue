@@ -1,4 +1,4 @@
-useWithdrawalBankStore<script setup lang="ts">
+<script setup lang="ts">
 import { useRule } from '@pork-buns/core/compositions/useRule';
 import ProvinceSelect from '@/components/common/ProvinceSelect.vue';
 import CitySelect from '@/components/common/CitySelect.vue';

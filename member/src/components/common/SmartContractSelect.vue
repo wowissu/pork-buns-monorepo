@@ -1,4 +1,4 @@
-useWithdrawalCryptoStore<script setup lang='ts'>
+<script setup lang='ts'>
 import { useWithdrawalCryptoStore } from '@/stores/withdrawalAccount.store';
 import { useAttrs } from 'vue';
 
