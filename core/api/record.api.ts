@@ -19,5 +19,5 @@ export const useRecordApi = defineStore('recordApi', () => {
   return {
     fetchBetRecords: (query: BetRecordQuery) => api.post<ApiResDataWithPagination<BetRecord[]>>('service/API/BetRecord/ListAsync', query),
     fetchRecord
-  }
+  };
 });
