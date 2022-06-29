@@ -8,13 +8,12 @@ export const useGameApi = defineStore('gameApi', () => {
 
   return {
     fetchList: () => api.post<ApiResponseData<Game[]>>('/service/API/Game/ListAsync'),
-    fetchGameCredit: (GameName: string) => api.post<ApiResponseData<{ Balance: string }>>('/service/API/Credit/GameAsync', { GameName }),
-    fetchGamesCredit: (GameNames: string[]) => api.post<ApiResponseData<{ GameName: string, Balance: string }[]>>('/service/API/Credit/MultipleGameAsync', { GameNames }),
+    fetchGameCredit: (gameName: string) => api.post<ApiResponseData<{ Balance: string }>>('/service/API/Credit/GameAsync', { GameName: gameName }),
+    fetchGamesCredit: (gameNames: string[]) => api.post<ApiResponseData<{ GameName: string, Balance: string }[]>>('/service/API/Credit/MultipleGameAsync', { GameNames: gameNames }),
 
     // 取得提款審核
-    fetchGameAudit: (PlatformID: number) => api.get<ApiResponseData<GameAudit>>('/service/API/MemberWithdrawNormalAudit/GetAsync', { params: { PlatformID } }),
+    fetchGameAudit: (platformID: number) => api.get<ApiResponseData<GameAudit>>('/service/API/MemberWithdrawNormalAudit/GetAsync', { params: { PlatformID: platformID } }),
     // actions
     transfer: () => api.post('/service/API/Member/TransferAsync', {})
-  }
-})
-
+  };
+});
