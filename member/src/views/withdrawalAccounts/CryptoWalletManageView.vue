@@ -1,4 +1,4 @@
-useWithdrawalCryptoStore<script setup lang="ts">
+<script setup lang="ts">
 import WithdrawalAccountCard from '@/components/withdrawalAccount/WithdrawalAccountCard.vue';
 import WithdrawalAccountAddCard from '@/components/withdrawalAccount/WithdrawalAccountAddCard.vue';
 import { defineAsyncComponent } from 'vue';
