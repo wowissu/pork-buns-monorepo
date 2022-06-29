@@ -1,10 +1,7 @@
 <script setup lang="ts">
-
 import MemberContentLayout from '@/layouts/MemberContentLayout.vue';
-import { useBetRecordStore } from '@/stores/betRecord.store';
 import { useGameStore } from '@/stores/game.store';
 import { useLoading } from '@pork-buns/core/compositions/useLoading';
-// import { dateFormat } from '@pork-buns/core/const/common.const';
 import type { Game } from '@pork-buns/core/types/game';
 import dayjs from 'dayjs';
 import type { QTableColumn, QTableProps } from 'quasar';
@@ -12,6 +9,7 @@ import { reactive, ref } from 'vue';
 import type { BetRecord } from '@pork-buns/core/types/betRecord';
 import { useRowsLoader } from '@/compositions/useRowsLoader';
 import { datetimeFormat } from '@pork-buns/core/const/common.const';
+import {useRecordApi} from '@pork-buns/core/api/record.api';
 
 interface UserQuery {
   endDate: string
@@ -21,7 +19,7 @@ interface UserQuery {
 
 // stores
 const gameStore = useGameStore();
-const betRecordStore = useBetRecordStore();
+const recordApi = useRecordApi();
 
 // pick date
 const dateFormat = 'YYYY/MM/DD';
@@ -37,7 +35,6 @@ const searchRange = ref({ from: defaultStartDate, to: defaultEndDate });
 const $loading = useLoading();
 
 const columns: QTableColumn<BetRecord>[] = [
-  // { name: 'date', label: '日期', align: 'left', field: 'CreateDate', format: (val) => $date(val) },
   { name: 'status', label: '注单状态', field: 'StatusText' },
   { name: 'no', label: '注单编号', align: 'left', field: 'TransSN' },
   { name: 'platform', label: '游戏平台', field: 'PlatformName' },
@@ -46,7 +43,7 @@ const columns: QTableColumn<BetRecord>[] = [
 ];
 
 const pagination = { rowsPerPage: 0 };
-const defaultGameOption: Game = { IsEnabled: 1, GameCode: '', GameTypeID: -1, PlatformEName: '-1', PlatformID: -1, Sequence: 0, ShowName: '全部游戏' };
+const defaultGameOption: Game = { GameCode: '', GameTypeID: -1, PlatformEName: '-1', PlatformID: -1, Sequence: 0, ShowName: '全部游戏' };
 const userquery = reactive<UserQuery>({ endDate: defaultEndDate, startDate: defaultStartDate, game: defaultGameOption });
 
 const $recordLoader = useRowsLoader([] as BetRecord[], (ctx) => {
@@ -58,7 +55,7 @@ const $recordLoader = useRowsLoader([] as BetRecord[], (ctx) => {
     try {
       $loading.start();
 
-      const res = await betRecordStore.fetchBetRecord({
+      const res = await recordApi.fetchBetRecords({
         PlatformCode: query.game.PlatformEName,
         PlatformName: query.game.ShowName,
         GameTypeID: query.game.GameTypeID,

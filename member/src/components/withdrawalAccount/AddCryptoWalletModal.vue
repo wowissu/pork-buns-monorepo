@@ -4,7 +4,7 @@ import SmartContractSelect from '@/components/common/SmartContractSelect.vue';
 import BasicSteps from '@/components/withdrawalAccount/BasicSteps.vue';
 import { QInput, useDialogPluginComponent, useQuasar } from 'quasar';
 import { reactive } from 'vue';
-import { useCryptoStore } from '@/stores/crypto.store';
+import { useWithdrawalCryptoStore } from '@/stores/withdrawalAccount.store';
 import type { BaseInput } from '@pork-buns/core/types/bank';
 import { ContractEnum } from '@pork-buns/core/types/crypto';
 
@@ -15,7 +15,7 @@ defineEmits([
 const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } = useDialogPluginComponent();
 
 const $q = useQuasar();
-const cryptoStore = useCryptoStore();
+const cryptoStore = useWithdrawalCryptoStore();
 const $rules = useRule();
 
 const userinput = reactive<{ usdtType: ContractEnum, usdtAddress: string }>({
@@ -25,12 +25,12 @@ const userinput = reactive<{ usdtType: ContractEnum, usdtAddress: string }>({
 
 async function addCryptoWalletSubmit (baseinput: BaseInput) {
   try {
-    await cryptoStore.addCryptoWallet(
-      baseinput.password,
-      baseinput.bankPassword,
-      userinput.usdtType,
-      userinput.usdtAddress
-    );
+    await cryptoStore.addCryptoWallet({
+      Password: baseinput.password,
+      BankPassword: baseinput.bankPassword,
+      UsdtType: userinput.usdtType,
+      Address: userinput.usdtAddress
+    });
 
     onDialogOK();
 

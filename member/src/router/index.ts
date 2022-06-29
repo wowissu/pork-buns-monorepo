@@ -16,6 +16,12 @@ const router = createRouter({
           path: '',
           component: MemberPageLayoutVue,
           children: [
+            // 錢包轉帳
+            {
+              path: 'transfer',
+              name: MemberMenuEnum.Transfer,
+              component: () => import('@/views/TransferView.vue')
+            },
             // 资金管理
             {
               path: 'transaction-record',

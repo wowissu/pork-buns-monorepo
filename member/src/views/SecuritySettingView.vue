@@ -61,7 +61,7 @@ function showBankPasswordEditModal () {
             label="电子邮箱"
             placeholder="请输入邮箱地址"
             readonly
-            hint="用于找回账号密码、接受平台发送的活动通知等，提高账号安全性"
+            hint="用于找回登录密码、接受平台发送的活动通知等，提高账号安全性"
           >
             <template #append>
               <span v-if="noValidEmail" class="tw-text-base tw-text-negative">未验证</span>
@@ -102,14 +102,14 @@ function showBankPasswordEditModal () {
             model-value="*****"
             outlined
             lazy-rules
-            label="账号密码"
-            placeholder="请输入账号密码"
+            label="登录密码"
+            placeholder="请输入登录密码"
             readonly
             hint="用于登陆账户、设置提款密码、确保账户安全访问等，提高账户安全性"
           >
             <template #after>
               <q-btn color="primary" @click="showPasswordEditModal">
-                修改账号密码
+                修改登录密码
               </q-btn>
             </template>
           </q-input>

@@ -1,4 +1,4 @@
-import type { ApiPagination } from 'types/api';
+import type { ApiPagination } from '../types/api';
 
 export enum TransactionTypeEnum {
   // $t('common.TransactionTypeEnum.Deposit')

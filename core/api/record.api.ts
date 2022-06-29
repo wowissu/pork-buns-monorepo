@@ -1,9 +1,10 @@
-import { useApi } from '@/plugins/memberApi.plugin';
+import type { ApiAxiosResponseWithPagination, ApiResDataWithPagination } from '../types/api';
 import { defineStore } from 'pinia';
-import type { DepositRecord, OthersRecord, PreferentialRecord, TransactionRecordQuery, TransactionTypeEnum, TransferRecord, WithdrawalRecord } from '@pork-buns/core/types/transactionRecord';
-import type { ApiAxiosResponseWithPagination } from '@pork-buns/core/types/api';
+import { useApi } from '../plugins/api.plugin';
+import type { BetRecord, BetRecordQuery } from '../types/betRecord';
+import type { DepositRecord, OthersRecord, PreferentialRecord, TransactionRecordQuery, TransactionTypeEnum, TransferRecord, WithdrawalRecord } from '../types/transactionRecord';
 
-export const useTransactionRecordStore = defineStore('transactionRecord', () => {
+export const useRecordApi = defineStore('recordApi', () => {
   const api = useApi();
 
   function fetchRecord (query: TransactionRecordQuery & { TransactionType: TransactionTypeEnum.Deposit }): Promise<ApiAxiosResponseWithPagination<DepositRecord[]>>;
@@ -16,6 +17,7 @@ export const useTransactionRecordStore = defineStore('transactionRecord', () => 
   }
 
   return {
+    fetchBetRecords: (query: BetRecordQuery) => api.post<ApiResDataWithPagination<BetRecord[]>>('service/API/BetRecord/ListAsync', query),
     fetchRecord
-  };
+  }
 });

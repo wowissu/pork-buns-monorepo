@@ -109,8 +109,8 @@ async function setAccountNameSubmit () {
           :rules="[$rules.required(), $rules.password()]"
           outlined
           type="password"
-          label="账号密码"
-          placeholder="请输入您账号密码"
+          label="登录密码"
+          placeholder="请输入您登录密码"
           :readonly="isLegacyStep(StepEnum.VerifyPassword)"
           :hide-bottom-space="isLegacyStep(StepEnum.VerifyPassword)"
           :dense="isLegacyStep(StepEnum.VerifyPassword)"
