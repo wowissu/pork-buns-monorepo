@@ -3,13 +3,13 @@ import { useMemberStore } from '@/stores/member.store';
 import { ref } from 'vue';
 import { useVerifyCode } from '@/compositions/useVerifyCode';
 import { useRouter } from 'vue-router';
-import { MemberMenuEnum } from '@pork-buns/core/const/menu.const';
+import { MemberMenuEnum } from '@/const/menu.const';
 
 const memberStore = useMemberStore();
 
 const router = useRouter();
 const userName = ref('su8888');
-const password = ref('123456');
+const password = ref('Aa123456');
 const { verifyKey, verifyCode, verifyUrl, reset: verifyReset } = useVerifyCode();
 
 async function onSubmit () {
@@ -25,6 +25,7 @@ async function onSubmit () {
     void router.push({ name: MemberMenuEnum.UserInfo });
   } catch (err) {
     verifyReset();
+    throw err;
   }
 }
 

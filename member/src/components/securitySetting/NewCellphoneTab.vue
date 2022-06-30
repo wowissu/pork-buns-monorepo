@@ -5,6 +5,7 @@ import { QForm, QInput, useQuasar } from 'quasar';
 import { reactive, ref, unref } from 'vue';
 import { useCountdown } from '@pork-buns/core/compositions/useCountdown';
 import { useLoading } from '@pork-buns/core/compositions/useLoading';
+import { useMemberSecurityApi } from '@pork-buns/core/api/member.api';
 
 const props = defineProps<{
   noCellphone: boolean
@@ -16,6 +17,7 @@ const emits = defineEmits<{
 }>();
 
 const memberStore = useMemberStore();
+const memberSecurityApi = useMemberSecurityApi();
 const $q = useQuasar();
 const $rules = useRule();
 const formRef = ref<QForm>();
@@ -39,7 +41,7 @@ async function submit () {
   $checkVerifyCodeLoading.start();
 
   try {
-    await memberStore.verifyCellphoneCode(userinput.password, userinput.cellphone);
+    await memberSecurityApi.verifyCellphoneCode(userinput.password, userinput.cellphone);
 
     void memberStore.fetchInfo();
 
@@ -68,7 +70,7 @@ async function sendValidateMail () {
     $sendVerifyCodeLoading.start();
     void $counter.start(60);
 
-    await memberStore.sendCellphoneVerifyCode(userinput.password, userinput.cellphone, 1, 1, props.noCellphone ? 0 : 1);
+    await memberSecurityApi.sendCellphoneVerifyCode(userinput.password, userinput.cellphone, 1, 1, props.noCellphone ? 0 : 1);
   } catch (err) {
     $counter.stop();
     throw err;

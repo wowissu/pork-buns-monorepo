@@ -5,14 +5,21 @@ import type { AxiosResponse } from 'axios';
 declare module 'axios' {
 
   interface AxiosRequestConfig {
+
     /**
-     * Change the notify error message content in interceptors.response
-     *
-     * ```
-     * axios.post('', data, { error: { messgae: 'change default message' } });
-     * ```
+     * Use overrideError
+     * @deprecated
      */
     error?: { message: string }
+
+    /**
+     * Override the notify error message content in interceptors.response
+     *
+     * ```
+     * axios.post('', data, { overrideError: { messgae: 'change default message' } });
+     * ```
+     */
+    overrideError?: { message: string }
 
     /**
      * This response data is no under ApiAxiosResponse
@@ -46,3 +53,4 @@ export interface ApiResDataWithPagination<T> extends ApiResponseData<T> {
 }
 
 export type ApiAxiosResponse<T> = AxiosResponse<ApiResponseData<T>>;
+export type ApiAxiosResponseWithPagination<T> = AxiosResponse<ApiResDataWithPagination<T>>;

@@ -18,7 +18,7 @@ export function createMemberApi (): Plugin {
 
           if (response.status !== 200 || response.data === undefined || response.data === null) {
             $q.notify({
-              message: response.config.error?.message ?? '连线发生错误',
+              message: response.config.overrideError?.message ?? '连线发生错误',
               color: 'negative'
             });
 
@@ -39,7 +39,7 @@ export function createMemberApi (): Plugin {
           const $q = app.config.globalProperties.$q as QVueGlobals;
 
           $q.notify({
-            message: err.config.error?.message ?? err.response?.data.error_description ?? '连线发生错误',
+            message: err.config.overrideError?.message ?? err.response?.data.error_description ?? '连线发生错误',
             color: 'negative'
           });
 

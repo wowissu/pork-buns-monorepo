@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import WithdrawalAccountCard from '@/components/withdrawalAccount/WithdrawalAccountCard.vue';
 import WithdrawalAccountAddCard from '@/components/withdrawalAccount/WithdrawalAccountAddCard.vue';
-import { useWithdrawalStore } from '@/stores/withdrawal.store';
-import { useBankStore } from '@/stores/bank.store';
+import { useWithdrawalBankStore } from '@/stores/withdrawalAccount.store';
 import { defineAsyncComponent } from 'vue';
 import { useQuasar } from 'quasar';
+import { useCommonStore } from '@/stores/common.store';
 
 const $q = useQuasar();
-const bankStore = useBankStore();
-const withdrawalStore = useWithdrawalStore();
+const bankStore = useWithdrawalBankStore();
+const commonStore = useCommonStore();
 
-void withdrawalStore.fetchBankAccountList();
+void bankStore.fetchBankAccountList();
 
 function showAddCardModal () {
   $q.dialog({
@@ -19,8 +19,12 @@ function showAddCardModal () {
       noBackdropDismiss: true
     }
   }).onOk(() => {
-    void withdrawalStore.fetchBankAccountList();
+    void bankStore.fetchBankAccountList();
   });
+}
+
+function getBankNameById (bankId: number) {
+  return commonStore.bankIdMap[bankId]?.BankName ?? '';
 }
 
 </script>
@@ -28,9 +32,9 @@ function showAddCardModal () {
 <template>
   <div class="tw-grid tw-grid-cols-1 sm:tw-grid-cols-2 md:tw-grid-cols-3 tw-gap-4">
     <WithdrawalAccountCard
-      v-for="(account, i) in withdrawalStore.bankAccountList"
+      v-for="(account, i) in bankStore.bankAccountList"
       :key="i"
-      :bank-name="bankStore.bankIdMap[account.BankID]?.BankName ?? ''"
+      :bank-name="getBankNameById(account.BankID)"
       :account-name="account.AccountName"
       :account-number="account.BankAccount"
     />

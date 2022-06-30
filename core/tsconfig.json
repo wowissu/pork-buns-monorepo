@@ -1,0 +1,16 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.web.json",
+  "include": ["./**/*"],
+  "compilerOptions": {
+    // "baseUrl": "./",
+    "lib": [
+      "esnext",
+      "DOM"
+    ],
+    "noUnusedLocals": true,
+    "allowJs": true,
+    "newLine": "lf",
+    "strictNullChecks": true,
+    "strictFunctionTypes": false
+  }
+}

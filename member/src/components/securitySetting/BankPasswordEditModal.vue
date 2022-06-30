@@ -5,6 +5,7 @@ import { computed, reactive, ref, unref } from 'vue';
 import { useLoading } from '@pork-buns/core/compositions/useLoading';
 import { useToggle } from '@pork-buns/core/compositions/useToggle';
 import { useMemberStore } from '@/stores/member.store';
+import { useMemberSecurityApi } from '@pork-buns/core/api/member.api';
 
 interface ExposeOptions {
   type: QInputProps['type']
@@ -13,6 +14,7 @@ interface ExposeOptions {
 
 const $q = useQuasar();
 const memberStore = useMemberStore();
+const memeberSecurityApi = useMemberSecurityApi();
 const $rules = useRule();
 const formRef = ref<QForm>();
 const $loading = useLoading();
@@ -44,10 +46,10 @@ async function submit () {
 
     if (noBankPassword.value) {
       // Submit for first time add bank password
-      await memberStore.addBankPassword(userinput.password, userinput.newBankPassowrd);
+      await memeberSecurityApi.addBankPassword(userinput.password, userinput.newBankPassowrd);
     } else {
       // Submit for change the old bank password
-      await memberStore.changeBankPassword(userinput.oldBankPassword, userinput.newBankPassowrd);
+      await memeberSecurityApi.changeBankPassword(userinput.oldBankPassword, userinput.newBankPassowrd);
     }
 
     onDialogOK();
@@ -79,7 +81,7 @@ async function submit () {
         <q-card-section class="tw-space-y-2">
           <template v-if="noBankPassword">
             <div>
-              <q-input v-model="userinput.password" :rules="[$rules.required(), $rules.password()]" outlined type="password" placeholder="账号密码" />
+              <q-input v-model="userinput.password" :rules="[$rules.required(), $rules.password()]" outlined type="password" placeholder="登录密码" />
             </div>
           </template>
           <template v-else>

@@ -2,11 +2,11 @@
 import { $date } from '@pork-buns/core/compositions/useDate';
 import { useLoading } from '@pork-buns/core/compositions/useLoading';
 import MemberContentLayout from '@/layouts/MemberContentLayout.vue';
-import { useMessageStore } from '@/stores/message.store';
 import type { Message } from '@pork-buns/core/types/common';
 import { useQuasar, type QTableColumn, type QTableProps } from 'quasar';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { usePersistenRef } from '@pork-buns/core/compositions/usePersistentRef';
+import { useMessageApi } from '@pork-buns/core/api/message.api';
 
 const columns: QTableColumn<Message>[] = [
   // { name: 'status', required: true, label: '状态', align: 'left', field: row => row.IsRead ? '已读' : '未读' },
@@ -16,32 +16,45 @@ const columns: QTableColumn<Message>[] = [
 ];
 
 const $q = useQuasar();
-const messageStore = useMessageStore();
-const pagination = ref({ rowsPerPage: 0 });
+const messageApi = useMessageApi()
+const pagination = { rowsPerPage: 0 };
+const messages = ref<Message[]>([]);
+const deletedMessagesId = ref<Message['InternalMailID'][]>([]);
+const filteredMessages = computed(() => messages.value.filter(row => !deletedMessagesId.value.includes(row.InternalMailID)));
+const totalMessages = ref<number>(0);
+const pageIndex = ref(1);
+const pageSize = ref(20);
+const pageCount = computed(() => Math.ceil(totalMessages.value / pageSize.value));
 
-// const rows = ref<Message[]>([]);
 const $loading = useLoading();
-const nextPage = ref(1);
-const onlyShowUnread = usePersistenRef('only-show-unread-messages', true);
+const onlyShowUnread = usePersistenRef('only-show-unread-messages', false);
 const viewingMessage = ref<Message>();
 const showMessageContent = ref(false);
 
-void messageStore.fectMessages(nextPage.value);
+void fetchMessage();
 
-const onScroll: QTableProps['onVirtualScroll'] = function onScroll ({ to }) {
-  const lastIndex = messageStore.messages.length - 1;
+const onScroll: QTableProps['onVirtualScroll'] = function onScroll ({ index }) {
+  const lastIndex = messages.value.length - 1;
 
-  if ($loading.loading === false && nextPage.value < messageStore.pageCount && to === lastIndex) {
-    $loading.start();
-
-    nextPage.value += 1;
-
-    void messageStore.fectMessages(nextPage.value)
-      .finally(() => {
-        void $loading.done(200);
-      });
+  if ($loading.loading === false && pageIndex.value < pageCount.value && index === lastIndex) {
+    void fetchMessage(pageIndex.value += 1);
   }
 };
+
+async function fetchMessage (page = pageIndex.value, size = pageSize.value) {
+  try {
+    $loading.start();
+
+    const res = await messageApi.fectMessages(page, size);
+    const msgs = res.data.Data;
+    const startIndex = (page - 1) * size;
+
+    messages.value.splice(startIndex, msgs.length, ...msgs);
+    totalMessages.value = res.data.Pagination.TotalCount;
+  } finally {
+    void $loading.done(200);
+  }
+}
 
 function filterRows (rows: Message[]) {
   const result = onlyShowUnread.value ? rows.filter(r => r.IsRead === 0) : rows;
@@ -49,18 +62,29 @@ function filterRows (rows: Message[]) {
   return result;
 }
 
-function messagePopup (message: Message) {
-  viewingMessage.value = message;
+async function messagePopup (msg: Message) {
+  viewingMessage.value = msg;
   showMessageContent.value = true;
 
-  if (message.IsRead === 0) {
-    void messageStore.readMessage(message.InternalMailID);
+  if (msg.IsRead === 0) {
+    await messageApi.readMessage(msg.InternalMailID);
+
+    const message = messages.value.find(m => m.InternalMailID === msg.InternalMailID);
+
+    message && (message.IsRead = 1);
   }
 }
 
 function deleteMessage (message: Message) {
-  function deleteIt () {
-    return messageStore.deleteMessage(message.InternalMailID);
+  async function deleteIt () {
+    await messageApi.deleteMessage(message.InternalMailID);
+
+    deletedMessagesId.value = [...deletedMessagesId.value, message.InternalMailID];
+
+    $q.notify({
+      message: '信息删除成功',
+      color: 'positive'
+    });
   }
 
   $q.notify({
@@ -85,7 +109,7 @@ function deleteMessage (message: Message) {
       <q-table
         class="q-messages-table"
         table-class="tw-overflow-x-hidden"
-        :rows="messageStore.messages"
+        :rows="filteredMessages"
         :columns="columns"
         :loading="$loading.loading"
         flat
@@ -168,13 +192,6 @@ function deleteMessage (message: Message) {
 </template>
 
 <style lang="scss">
-.q-table-fixed {
-  .q-table {
-    table-layout: fixed;
-    width: 100%;
-  }
-}
-
 .q-messages-table {
   max-height: 600px;
 

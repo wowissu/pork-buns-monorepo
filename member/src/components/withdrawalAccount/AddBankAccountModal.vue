@@ -6,7 +6,7 @@ import BankSelect from '@/components/common/BankSelect.vue';
 import BasicSteps from '@/components/withdrawalAccount/BasicSteps.vue';
 import { QInput, useDialogPluginComponent, useQuasar } from 'quasar';
 import { reactive } from 'vue';
-import { useBankStore } from '@/stores/bank.store';
+import { useWithdrawalBankStore } from '@/stores/withdrawalAccount.store';
 import type { BaseInput } from '@pork-buns/core/types/bank';
 
 defineEmits([
@@ -16,7 +16,7 @@ defineEmits([
 const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } = useDialogPluginComponent();
 
 const $q = useQuasar();
-const bankStore = useBankStore();
+const bankStore = useWithdrawalBankStore();
 const $rules = useRule();
 
 const userinput = reactive({

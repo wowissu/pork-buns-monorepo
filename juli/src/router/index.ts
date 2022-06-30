@@ -2,7 +2,7 @@ import { isDev } from '@pork-buns/core/compositions/useEnv';
 import BaseLayoutVue from '@/layouts/BaseLayout.vue';
 import Home from '@/components/page/home.vue';
 import MemberPageLayoutVue from '@/layouts/MemberPageLayout.vue';
-import { MemberMenuEnum } from '@pork-buns/core/const/menu.const';
+import { MemberMenuEnum } from '@/const/menu.const';
 import { createRouter, createWebHistory } from 'vue-router';
 
 const router = createRouter({

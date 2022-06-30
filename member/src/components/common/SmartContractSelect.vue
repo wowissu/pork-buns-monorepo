@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { useCryptoStore } from '@/stores/crypto.store';
+import { useWithdrawalCryptoStore } from '@/stores/withdrawalAccount.store';
 import { useAttrs } from 'vue';
 
 const props = defineProps<{
@@ -12,7 +12,7 @@ const emits = defineEmits<{
 
 // const slots = useSlots();
 const attrs = useAttrs();
-const cryptoStore = useCryptoStore();
+const cryptoStore = useWithdrawalCryptoStore();
 
 </script>
 

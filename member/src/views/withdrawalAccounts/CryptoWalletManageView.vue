@@ -3,10 +3,10 @@ import WithdrawalAccountCard from '@/components/withdrawalAccount/WithdrawalAcco
 import WithdrawalAccountAddCard from '@/components/withdrawalAccount/WithdrawalAccountAddCard.vue';
 import { defineAsyncComponent } from 'vue';
 import { useQuasar } from 'quasar';
-import { useCryptoStore } from '@/stores/crypto.store';
+import { useWithdrawalCryptoStore } from '@/stores/withdrawalAccount.store';
 
 const $q = useQuasar();
-const cryptoStore = useCryptoStore();
+const cryptoStore = useWithdrawalCryptoStore();
 
 void cryptoStore.fetchCryptoWalletList();
 

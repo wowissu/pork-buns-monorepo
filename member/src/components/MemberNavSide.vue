@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import iconCoin from '@/assets/member/icon_coin.png';
 import iconUser from '@/assets/member/icon_user.png';
-import { MemberMenuEnum } from '@pork-buns/core/const/menu.const';
+import { MemberMenuEnum } from '@/const/menu.const';
 import { RouterLink } from 'vue-router';
 </script>
 
@@ -24,19 +24,25 @@ import { RouterLink } from 'vue-router';
           </q-btn>
         </li>
         <li>
-          <q-btn class="nav-item" flat align="left">
-            钱包转账
-          </q-btn>
+          <RouterLink v-slot="{ navigate, isActive }" custom :to="{ name: MemberMenuEnum.Transfer }">
+            <q-btn class="nav-item" :class="{ 'nav-item--active': isActive }" flat align="left" @click="navigate()">
+              钱包转账
+            </q-btn>
+          </RouterLink>
         </li>
         <li>
-          <q-btn class="nav-item" flat align="left">
-            交易记录
-          </q-btn>
+          <RouterLink v-slot="{ navigate, isActive }" custom :to="{ name: MemberMenuEnum.TransactionRecord }">
+            <q-btn class="nav-item" :class="{ 'nav-item--active': isActive }" flat align="left" @click="navigate()">
+              交易记录
+            </q-btn>
+          </RouterLink>
         </li>
         <li>
-          <q-btn class="nav-item" flat align="left">
-            投注记录
-          </q-btn>
+          <RouterLink v-slot="{ navigate, isActive }" custom :to="{ name: MemberMenuEnum.BetRecord }">
+            <q-btn class="nav-item" :class="{ 'nav-item--active': isActive }" flat align="left" @click="navigate()">
+              投注记录
+            </q-btn>
+          </RouterLink>
         </li>
       </ul>
     </div>

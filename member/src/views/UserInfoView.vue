@@ -8,8 +8,6 @@ import { GenderEnum } from '@pork-buns/core/const/common.const';
 import { QForm, QSelect } from 'quasar';
 import { useRule } from '@pork-buns/core/compositions/useRule';
 
-undefined;
-
 type UserInput = Partial<Pick<MemberEditPostdata, 'NickName' | 'Sex' | 'BirthDay' | 'QQ' | 'ProvinceID' | 'Address' | 'UserIdentity' | 'Name'>>;
 
 const memberStore = useMemberStore();
@@ -75,7 +73,7 @@ async function submit () {
   }
 
   void memberStore.changeUserInfo({
-    Sex: userinput.Sex!,
+    Sex: userinput.Sex,
     Name: userinput.Name!,
     BirthDay: userinput.BirthDay!,
     UserIdentity: userinput.UserIdentity!,
@@ -132,13 +130,6 @@ async function submit () {
                     hint="仅有一次设置机会，提款人姓名须与注册姓名一致"
                   />
                 </template>
-                <q-input
-                  :model-value="memberStore.member?.Name"
-                  outlined
-                  dense
-                  readonly
-                  hint="仅有一次设置机会，提款人姓名必须与注册姓名一致"
-                />
               </td>
             </tr>
             <tr class="tw-align-baseline">
