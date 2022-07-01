@@ -11,4 +11,7 @@ member:
     - node -v
     - npm -v
     - npm config get proxy
-    - npm config rm proxy; npm install
+    - npm config get https-proxy
+    - npm config --global rm proxy; npm config --global rm https-proxy
+    - npm config rm proxy; npm config rm https-proxy
+    - npm install
