@@ -14,4 +14,6 @@ member:
     - npm config get https-proxy
     - npm config --global rm proxy; npm config --global rm https-proxy
     - npm config rm proxy; npm config rm https-proxy
+    - npm config set registry "http://registry.npmjs.org"
+    - npm config set strict-ssl false
     - npm install
