@@ -72,7 +72,7 @@ async function submit () {
         <q-card-section class="tw-flex tw-items-center tw-space-x-4">
           <q-icon name="mdi-alert-circle-outline" size="lg" color="primary" />
           <span class="tw-text-lg">
-            修改密码
+            修改提款密码
           </span>
         </q-card-section>
 
@@ -81,12 +81,12 @@ async function submit () {
         <q-card-section class="tw-space-y-2">
           <template v-if="noBankPassword">
             <div>
-              <q-input v-model="userinput.password" :rules="[$rules.required(), $rules.password()]" outlined type="password" placeholder="登录密码" />
+              <q-input v-model="userinput.password" :rules="[$rules.required(), $rules.password()]" outlined type="password" label="登录密码" />
             </div>
           </template>
           <template v-else>
             <div>
-              <q-input v-model="userinput.oldBankPassword" :rules="[$rules.required(), $rules.password()]" outlined type="password" placeholder="原提款密码" />
+              <q-input v-model="userinput.oldBankPassword" :rules="[$rules.required(), $rules.password()]" outlined type="password" label="原提款密码" />
             </div>
           </template>
           <div>
@@ -95,7 +95,7 @@ async function submit () {
               :type="newBankPasswordExpose.value.type"
               :rules="[$rules.required(), $rules.password()]"
               outlined
-              placeholder="提款密码"
+              label="提款密码"
             >
               <template #append>
                 <q-btn tabindex="-1" flat dense :icon="newBankPasswordExpose.value.icon" @click="newBankPasswordExpose.toggle()" />
@@ -108,7 +108,7 @@ async function submit () {
               :type="duplicateBankPasswordExpose.value.type"
               :rules="[$rules.required(), $rules.eq(userinput.newBankPassowrd)]"
               outlined
-              placeholder="确认提款密码"
+              label="确认提款密码"
             >
               <template #append>
                 <q-btn tabindex="-1" flat dense :icon="duplicateBankPasswordExpose.value.icon" @click="duplicateBankPasswordExpose.toggle()" />
