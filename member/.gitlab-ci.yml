@@ -8,5 +8,7 @@ member:
   # before_script:
   #   - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "$CI_REGISTRY"
   script:
+    - node -v
     - npm -v
-    - npm install
+    - npm config get proxy
+    - npm config rm proxy; npm install
