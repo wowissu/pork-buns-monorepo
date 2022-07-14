@@ -1,0 +1,19 @@
+
+member:
+  stage: build
+  tags:
+    - build
+  # rules:
+  #   - if: $CI_COMMIT_TAG
+  # before_script:
+  #   - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "$CI_REGISTRY"
+  script:
+    - node -v
+    - npm -v
+    - npm config get proxy
+    - npm config get https-proxy
+    - npm config --global rm proxy; npm config --global rm https-proxy
+    - npm config rm proxy; npm config rm https-proxy
+    - npm config set registry "http://registry.npmjs.org"
+    - npm config set strict-ssl false
+    - npm install
